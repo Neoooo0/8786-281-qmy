@@ -285,7 +285,7 @@ class WoZaiXiaoYuanPuncher:
         data = {
             "touser": os.environ["TO_USER"],
             "template_id": os.environ["TEMPLATE_ID"],
-            "url": "http://weixin.qq.com/download",
+            "url": "https://github.com/Neoooo0/8786-281-qmy/actions/workflows/wzxy_healthcheck.yml",
             "topcolor": "#FF0000",
             "data": {
 
