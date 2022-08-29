@@ -252,7 +252,67 @@ class WoZaiXiaoYuanPuncher:
             requests.post(baseurl, data=body)
             print("消息已通过 喵推送 进行通知，请检查推送结果")
 
+            
+            
+def get_access_token():
+    # appId
+    app_id = 'wx07d5af082fb1df10'
+    #config["app_id"]
+    # appSecret
+    app_secret = '2ed1b943ecd631d26c3a4694236ec286'
+    post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
+                .format(app_id, app_secret))
+    try:
+        access_token = get(post_url).json()['access_token']
+    except KeyError:
+        print("获取access_token失败，请检查app_id和app_secret是否正确")
+        os.system("pause")
+        sys.exit(1)
+    print(access_token)
+    return access_token
 
+
+
+def send_message():
+
+    accessToken = get_access_token()
+    notifyResult = self.getResult()
+
+    url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
+
+    data = {
+        "touser": 'oqxVn6wSj_xphYNT_Tzrvi5PZQrA',
+        "template_id": '5Lt-VgHXjRVvdH0Jos5saponamo_RZMbAUCkM8d7Mic',
+        "url": "http://weixin.qq.com/download",
+        "topcolor": "#FF0000",
+        "data": {
+
+            "to_user": {
+                "value": notifyResult,
+                "color": '#173177'
+            }
+
+        }
+    }
+    headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    response = post(url, headers=headers, json=data).json()
+    if response["errcode"] == 40037:
+        print("推送消息失败，请检查模板id是否正确")
+    elif response["errcode"] == 40036:
+        print("推送消息失败，请检查模板id是否为空")
+    elif response["errcode"] == 40003:
+        print("推送消息失败，请检查微信号是否正确")
+    elif response["errcode"] == 0:
+        print("推送消息成功")
+    else:
+        print(response) 
+
+        
+        
 if __name__ == "__main__":
     # 找不到cache，登录+打卡
     wzxy = WoZaiXiaoYuanPuncher()
@@ -267,3 +327,4 @@ if __name__ == "__main__":
         print("找到cache文件，尝试使用jwsession打卡...")
         wzxy.doPunchIn()
     wzxy.sendNotification()
+    send_message()
