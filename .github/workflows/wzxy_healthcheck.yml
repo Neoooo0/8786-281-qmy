@@ -55,6 +55,7 @@ jobs:
         WZXY_AREACODE: ${{secrets.AREACODE}}
         WZXY_TOWNCODE: ${{secrets.TOWNCODE}}
         WZXY_CITYCODE: ${{secrets.CITYCODE}}
+        APP_ID: ${{secrets.APP_ID}}
         TEMPLATE_ID: ${{secrets.TEMPLATE_ID}}
         APP_SECRET: ${{secrets.APP_SECRET}}
         TO_USER: ${{secrets.TO_USER}}
