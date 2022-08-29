@@ -274,10 +274,10 @@ def get_access_token():
 
 
 
-def send_message():
+def send_message(self):
 
     accessToken = get_access_token()
-    notifyResult = getResult(self)
+    notifyResult = self.getResult()
 
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
 
@@ -328,4 +328,4 @@ if __name__ == "__main__":
         print("找到cache文件，尝试使用jwsession打卡...")
         wzxy.doPunchIn()
     wzxy.sendNotification()
-    send_message()
+    wzxy.send_message()
