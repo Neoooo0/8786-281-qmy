@@ -8,6 +8,7 @@ import time
 import urllib
 import urllib.parse
 from urllib.parse import urlencode
+from requests import get, post
 
 import requests
 
