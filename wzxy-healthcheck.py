@@ -257,10 +257,10 @@ class WoZaiXiaoYuanPuncher:
             
 def get_access_token():
     # appId
-    app_id = 'wx07d5af082fb1df10'
+    app_id = os.environ["APP_ID"]
     #config["app_id"]
     # appSecret
-    app_secret = '2ed1b943ecd631d26c3a4694236ec286'
+    app_secret = os.environ["APP_SECRET"]
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
                 .format(app_id, app_secret))
     try:
@@ -282,8 +282,8 @@ def send_message():
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
 
     data = {
-        "touser": 'oqxVn6wSj_xphYNT_Tzrvi5PZQrA',
-        "template_id": '5Lt-VgHXjRVvdH0Jos5saponamo_RZMbAUCkM8d7Mic',
+        "touser": os.environ["TO_USER"],
+        "template_id": os.environ["TEMPLATE_ID"],
         "url": "http://weixin.qq.com/download",
         "topcolor": "#FF0000",
         "data": {
