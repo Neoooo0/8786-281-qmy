@@ -269,7 +269,6 @@ def get_access_token():
         print("获取access_token失败，请检查app_id和app_secret是否正确")
         os.system("pause")
         sys.exit(1)
-    print(access_token)
     return access_token
 
 
@@ -278,6 +277,8 @@ def send_message():
 
     accessToken = get_access_token()
     notifyResult = WoZaiXiaoYuanPuncher().getResult()
+    
+    print(notifyResult)
 
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
 
