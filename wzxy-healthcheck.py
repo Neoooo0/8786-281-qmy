@@ -274,10 +274,10 @@ def get_access_token():
 
 
 
-def send_message():
+def send_message(self):
 
     accessToken = get_access_token()
-    notifyResult = getResult()
+    notifyResult = self.getResult()
 
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
 
