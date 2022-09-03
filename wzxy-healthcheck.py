@@ -3,7 +3,6 @@ import base64
 import hashlib
 import hmac
 import json
-import logging
 import os
 import time
 import urllib
@@ -15,8 +14,7 @@ import requests
 
 import utils
 
-logFile = open("run.log", encoding="utf-8", mode="a")
-logging.basicConfig(stream=logFile, format="%(asctime)s %(levelname)s:%(message)s", datefmt="%Y-%m-%d %H:%M:%S",level=logging.INFO)
+
 
 class WoZaiXiaoYuanPuncher:
     def __init__(self):
@@ -161,7 +159,6 @@ class WoZaiXiaoYuanPuncher:
     def sendNotification(self):
         notifyTime = utils.getCurrentTime()
         notifyResult = self.getResult()
-        logging.info("结果为："+str(notifyResult))
 
         if os.environ.get("SCT_KEY"):
             # serverchan 推送
@@ -334,4 +331,3 @@ if __name__ == "__main__":
         wzxy.doPunchIn()
     wzxy.sendNotification()
     wzxy.send_message()
-    logging.info("程序执行完成")
