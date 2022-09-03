@@ -60,10 +60,13 @@ jobs:
         APP_SECRET: ${{secrets.APP_SECRET}}
         TO_USER: ${{secrets.TO_USER}}
 
-      run: |
-           python wzxy-healthcheck.py
-           echo -n `date +%Y-%m-%d\ %H:%M:%S`\ -\ >> ./run.log 
-           tail run.log  
+      run: python wzxy-healthcheck.py
+      
+
+    - name: Push log #更新日志
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: auto-checkin
         
         
   ## 多账户配置示例，请复制下面的代码后取消注释再修改，粘贴时注意缩进
