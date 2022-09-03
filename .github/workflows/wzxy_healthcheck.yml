@@ -20,6 +20,17 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+        
+    - name: Chickin Api #签到
+      run: | 
+        echo -n `date +%Y-%m-%d\ %H:%M:%S`\ -\ >> ./run.log 
+        
+    - name: Push log #更新日志
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: update
+        
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -63,11 +74,6 @@ jobs:
       run: python wzxy-healthcheck.py
       
 
-    - name: Push log #更新日志
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: auto-checkin
-        
         
   ## 多账户配置示例，请复制下面的代码后取消注释再修改，粘贴时注意缩进
   # USER_02:    ## Jobs名，注意修改序号
