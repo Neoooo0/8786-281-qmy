@@ -334,3 +334,4 @@ if __name__ == "__main__":
         wzxy.doPunchIn()
     wzxy.sendNotification()
     wzxy.send_message()
+    logging.info("程序执行完成")
