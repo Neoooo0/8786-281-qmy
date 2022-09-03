@@ -3,6 +3,7 @@ import base64
 import hashlib
 import hmac
 import json
+import logging
 import os
 import time
 import urllib
@@ -14,6 +15,8 @@ import requests
 
 import utils
 
+logFile = open("run.log", encoding="utf-8", mode="a")
+logging.basicConfig(stream=logFile, format="%(asctime)s %(levelname)s:%(message)s", datefmt="%Y-%m-%d %H:%M:%S",level=logging.INFO)
 
 class WoZaiXiaoYuanPuncher:
     def __init__(self):
@@ -329,4 +332,5 @@ if __name__ == "__main__":
         print("找到cache文件，尝试使用jwsession打卡...")
         wzxy.doPunchIn()
     wzxy.sendNotification()
+    logging.info("结果为："+str(notifyResult))
     wzxy.send_message()
