@@ -161,6 +161,7 @@ class WoZaiXiaoYuanPuncher:
     def sendNotification(self):
         notifyTime = utils.getCurrentTime()
         notifyResult = self.getResult()
+        logging.info("结果为："+str(notifyResult))
 
         if os.environ.get("SCT_KEY"):
             # serverchan 推送
@@ -332,5 +333,4 @@ if __name__ == "__main__":
         print("找到cache文件，尝试使用jwsession打卡...")
         wzxy.doPunchIn()
     wzxy.sendNotification()
-    logging.info("结果为："+str(notifyResult))
     wzxy.send_message()
