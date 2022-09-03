@@ -23,7 +23,7 @@ jobs:
         
     - name: Chickin Api #签到
       run: | 
-        echo -n `date +%Y-%m-%d\ %H:%M:%S`\ 向log输出了一个UTC时间，北京时间需+8h\ >> ./run.log 
+        echo -n `date +%Y-%m-%d\ %H:%M:%S`\ 向log输出了一个UTC时间，北京时间需+8h \ -\ >> ./run.log 
         
     - name: Push log #更新日志
       uses: stefanzweifel/git-auto-commit-action@v4
